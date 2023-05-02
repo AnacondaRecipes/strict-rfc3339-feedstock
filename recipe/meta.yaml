@@ -12,23 +12,27 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  noarch: python
-  number: 1
-  script: python -m pip install --no-deps --ignore-installed .
+  number: 0
+  script: python -m pip install --no-deps --no-build-isolation --ignore-installed .
 
 requirements:
   host:
     - pip
     - python
+    - wheel
   run:
     - python
 
 test:
   imports:
     - strict_rfc3339
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
-  home: http://www.danielrichman.co.uk/libraries/strict-rfc3339.html
+  home: https://github.com/danielrichman/strict-rfc3339
   license: GPL-3.0
   license_family: GPL
   license_file: LICENSE
